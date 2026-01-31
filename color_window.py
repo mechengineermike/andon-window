@@ -193,15 +193,15 @@ def main() -> int:
     if args.mode == "run":
         if not args.file.exists():
             write_color(args.file, args.color)
-            print("\nColor window is running.")
-            print(f"Color file:      {args.file}")
-            print(f"Heartbeat file:  {args.heartbeat_file}")
-            print(f"Quit file:       {args.quit_file}")
-            print("\nSet a color from any terminal like:")
-            print(f'  {sys.executable} "{Path(__file__).resolve()}" set red')
-            print(f'  {sys.executable} "{Path(__file__).resolve()}" set "#00ff00"')
-            print(f'  {sys.executable} "{Path(__file__).resolve()}" set quit\n')
-            print("Close the window to exit, or send `set quit`.\n")
+        print("\nColor window is running.")
+        print(f"Color file:      {args.file}")
+        print(f"Heartbeat file:  {args.heartbeat_file}")
+        print(f"Quit file:       {args.quit_file}")
+        print("\nSet a color from any terminal like:")
+        print(f'  {sys.executable} "{Path(__file__).resolve()}" set red')
+        print(f'  {sys.executable} "{Path(__file__).resolve()}" set "#00ff00"')
+        print(f'  {sys.executable} "{Path(__file__).resolve()}" set quit\n')
+        print("Close the window to exit, or send `set quit`.\n")
 
         app = ColorWindow(
             color_file=args.file,
@@ -232,4 +232,11 @@ def main() -> int:
 
 
 if __name__ == "__main__":
+    # If launched with no args, default to "run"
+    if len(sys.argv) == 1:
+        sys.argv.append("run")
+
+    parser = argparse.ArgumentParser(
+        description="Normal window filled with a color, controlled via Python. `set` auto-starts the window."
+    )
     raise SystemExit(main())
