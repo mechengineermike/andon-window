@@ -1,3 +1,5 @@
+![Color Window example](exampleimageColorWindow.png)
+
 # Color Window Indicator (Python)
 
 A tiny cross-platform **color indicator window** (normal resizable window with title bar) whose background color is controlled from the command line using Python.
